@@ -18,7 +18,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile group: 'com.google.collections', name: 'google-collections', version: '1.0-rc2'
-	compile group: 'org.apache.opennlp', name: 'opennlp-tools', version: '1.5.2-incubating'
+	compile group: 'org.apache.opennlp', name: 'opennlp-tools', version: '1.9.1'
 	compile group: 'commons-configuration', name: 'commons-configuration', version: '1.6'
 	testCompile 'org.awaitility:awaitility:3.1.6'
 }
