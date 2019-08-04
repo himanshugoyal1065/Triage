@@ -17,7 +17,6 @@ import java.util.stream.LongStream;
 /**
  * @author <a href="himanshu.goyal@navis.com">Himanshu Goyal</a>
  */
-@Profile("!test")
 public class DatabasePolpulator implements CommandLineRunner {
 
     public static Logger LOGGER = LoggerFactory.getLogger(DatabasePolpulator.class);

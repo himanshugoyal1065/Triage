@@ -1,0 +1,8 @@
+POST http://localhost:8090/find/developer
+Content-Type: application/json
+
+{
+  "inStoryDescription" : "Initialize the YC Emulator Adapter code - Part 1"
+}
+
+###

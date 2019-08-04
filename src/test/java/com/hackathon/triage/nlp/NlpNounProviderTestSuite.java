@@ -1,5 +1,6 @@
 package com.hackathon.triage.nlp;
 
+import com.hackathon.triage.bootstrap.DatabasePolpulator;
 import com.hackathon.triage.config.NlpConfig;
 import com.hackathon.triage.nlp.api.INlpTaggerSupplier;
 import com.hackathon.triage.nlp.impl.NlpNounProvider;
@@ -7,6 +8,7 @@ import com.hackathon.triage.nlp.impl.NlpTaggerSupplierImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -23,6 +25,9 @@ public class NlpNounProviderTestSuite {
 
     @Autowired
     private INlpTaggerSupplier _nlpTaggerSupplier;
+
+    @MockBean
+    private DatabasePolpulator _databasePopulator;
 
     @Test
     public void testNounsGenerated() {
