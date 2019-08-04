@@ -1,6 +1,7 @@
 package com.hackathon.triage.cultivator.impl;
 
 import com.hackathon.triage.cultivator.api.IDeveloperFinderService;
+import com.hackathon.triage.issue.Issue;
 import com.hackathon.triage.issue.IssueRepository;
 import com.hackathon.triage.issue.User;
 import com.hackathon.triage.nlp.impl.NlpNounProvider;
@@ -11,6 +12,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author <a href="himanshu.goyal@navis.com">Himanshu Goyal</a>
@@ -28,37 +30,27 @@ public class DeveloperFinderServiceImpl implements IDeveloperFinderService {
     @Override
     public List<CounterSortManager> findDeveloper(String inStoryDescription) {
         List<String> nouns = _nounProvider.getNouns(inStoryDescription);
-        List<List<User>> usersObtainedForEachNoun = new ArrayList<>();
-
+        List<Issue> issueList = new ArrayList<>();
+        Map<String, CounterSortManager> developersWithRank = new HashMap<>();
         for (String noun : nouns) {
-            usersObtainedForEachNoun.add(_issueRepository.findBySummaryContainsIgnoreCaseAndAssigneeNotNull(noun));
+            issueList.addAll(_issueRepository.findAllBySummaryContaining(noun));
         }
 
-        Map<String, CounterSortManager> developersWithRank = new HashMap<>();
-
-        for (List<User> userList : usersObtainedForEachNoun) {
-            for (User user : userList) {
-                if (user.getDisplayName() != null) {
-                    if (developersWithRank.containsKey(user.getDisplayName())) {
-                       /* int rank = developersWithRank.get(user.getDisplayName());
-                        rank++;
-                        developersWithRank.put(user.getDisplayName(), rank);*/
-                       CounterSortManager counter = developersWithRank.get(user.getDisplayName());
-                       counter.count++;
-                       developersWithRank.put(user.getDisplayName(), counter);
-                    } else {
-                        CounterSortManager counter = new CounterSortManager(user.getDisplayName(), 1);
-                        developersWithRank.put(user.getDisplayName(), counter);
-                    }
+        for (Issue issue : issueList) {
+            User user = issue.getAssignee();
+            if (user.getDisplayName() != null) {
+                if (developersWithRank.containsKey(user.getDisplayName())) {
+                    CounterSortManager counter = developersWithRank.get(user.getDisplayName());
+                    counter.count++;
+                    developersWithRank.put(user.getDisplayName(), counter);
+                } else {
+                    CounterSortManager counter = new CounterSortManager(user.getDisplayName(), 1);
+                    developersWithRank.put(user.getDisplayName(), counter);
                 }
-
             }
         }
-
-        //sort the map according to values
-        List<CounterSortManager> counterList = (List) developersWithRank.values();
+        List<CounterSortManager> counterList = new ArrayList<>(developersWithRank.values());
         Collections.sort(counterList, (c1, c2) -> c1.count > c2.count ? -1 : c1.count == c2.count ? c1.name.compareTo(c2.name) : 1);
-//        return countList;
         return counterList;
     }
 }
