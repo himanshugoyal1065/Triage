@@ -81,10 +81,11 @@ public class DatabasePolpulator implements CommandLineRunner {
         _issueRequestMaker.setStartIndex(inStartIndex);
 
         String json = _issueRequestMaker.executeRequest();
-        LOGGER.info("the json obtained " + json);
+//        LOGGER.info("the json obtained " + json);
 
 
         List<Issue> issues = _issueParser.parseIssuesFromJson(json);
+        assert (issues != null && !issues.isEmpty());
         LOGGER.info("the list of issues obtained " + issues.size());
 
         LOGGER.info("saving into database");

@@ -39,7 +39,7 @@ public class IssueParser {
             } else {
                 summary = (String) fields.get("summary");
             }
-            Map<String, Object> assignee = (Map<String, Object>) issue.get("assignee");
+            Map<String, Object> assignee = (Map<String, Object>) fields.get("assignee");
             String userName;
             String email;
             String key;
@@ -57,7 +57,7 @@ public class IssueParser {
             }
             User user = new User(userName, key, email, displayName);
 
-            Map<String, Object> watches = (Map<String, Object>) issue.get("watches");
+            Map<String, Object> watches = (Map<String, Object>) fields.get("watches");
             int watchCount;
             if (watches == null) {
                 watchCount = 0;

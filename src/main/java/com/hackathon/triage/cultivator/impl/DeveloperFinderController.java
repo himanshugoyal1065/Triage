@@ -25,7 +25,7 @@ public class DeveloperFinderController {
      * @return the appropiate developer
      */
     @PostMapping
-    public List<CounterSortManager> getDeveloper(String inStoryDescription) {
+    public List<CounterSortManager> getDeveloper(@RequestBody String inStoryDescription) {
         return _developerFinderService.findDeveloper(inStoryDescription);
     }
 }
