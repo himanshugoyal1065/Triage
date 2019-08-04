@@ -1,22 +1,23 @@
 package com.hackathon.triage.config;
 
-import com.hackathon.triage.schedule.api.IScheduleTask;
-import com.hackathon.triage.schedule.impl.SprintApiCallerScheduleTaskImpl;
-import com.hackathon.triage.schedule.impl.SprintApiCallerTaskConfig;
-import com.hackathon.triage.schedule.impl.TaskSchedulerTaskImpl;
-import com.hackathon.triage.schedule.impl.TestSchedulerConfig;
+import com.hackathon.triage.schedule.configs.api.IScheduleConfig;
+import com.hackathon.triage.schedule.task.api.IScheduleTask;
+import com.hackathon.triage.schedule.task.impl.SprintApiCallerScheduleTaskImpl;
+import com.hackathon.triage.schedule.configs.impl.SprintApiCallerTaskConfigAbstract;
+import com.hackathon.triage.schedule.task.impl.TaskSchedulerTaskImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.stereotype.Component;
 
 /**
  * @author <a href="himanshu.goyal@navis.com">Himanshu Goyal</a>
  */
-@EnableScheduling
-@Import(value = {TestSchedulerConfig.class})
+@Component
+@Import(value = {IScheduleConfig.class})
 public class ScheduleConfig {
 
     @Autowired
@@ -29,20 +30,5 @@ public class ScheduleConfig {
         threadPoolTaskScheduler.setPoolSize(threadCount);
         threadPoolTaskScheduler.setThreadNamePrefix("background-job-thread");
         return threadPoolTaskScheduler;
-    }
-
-    @Bean
-    public SprintApiCallerTaskConfig getSpringApiCallerTaskConfig() {
-        return new SprintApiCallerTaskConfig(getSprintApiCallerScheduleTaskImpl());
-    }
-
-    @Bean(name = "SprintApiCallerScheduleTaskImpl")
-    public IScheduleTask getSprintApiCallerScheduleTaskImpl() {
-        return new SprintApiCallerScheduleTaskImpl();
-    }
-
-    @Bean(name = "testScheduleApiCallerTaskImpl")
-    public IScheduleTask getTaskSchedulerTaskImpl() {
-        return new TaskSchedulerTaskImpl();
     }
 }

@@ -23,7 +23,7 @@ public class DeveloperFinderServiceImpl implements IDeveloperFinderService {
     public String findDeveloper(String inStoryDescription) {
         List<String> nouns = _nounProvider.getNouns(inStoryDescription);
 
-        
+
 
 
         return null;

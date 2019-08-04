@@ -27,7 +27,7 @@ public class JsonUtils {
         try {
             t = _objectMapper.readValue(inJson, new TypeReference<T>(){});
         } catch (Exception e) {
-            System.out.println("the objectmapper failed");
+            System.out.println("the object mapper failed");
         }
         return t;
     }
