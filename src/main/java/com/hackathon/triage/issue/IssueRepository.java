@@ -10,5 +10,7 @@ import java.util.List;
  */
 @Repository
 public interface IssueRepository extends MongoRepository<Issue, String> {
-    List<User> findBySummaryContainsIgnoreCase(List<String> inNouns);
+
+    //todo optimise this to not return the null records... it takes a lot of time otherwise..
+    List<User> findBySummaryContainsIgnoreCaseAndAssigneeNotNull(String inNoun);
 }
