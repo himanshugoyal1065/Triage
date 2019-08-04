@@ -1,4 +1,4 @@
-package com.hackathon.triage.schedule.api;
+package com.hackathon.triage.schedule.task.api;
 
 /**
  * the interface which is extended by all the tasks(background jobs)

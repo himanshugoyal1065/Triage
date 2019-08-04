@@ -1,4 +1,4 @@
-package com.hackathon.triage.schedule.api;
+package com.hackathon.triage.schedule.configs.api;
 
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 

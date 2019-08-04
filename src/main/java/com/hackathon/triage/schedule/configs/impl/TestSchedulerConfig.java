@@ -1,6 +1,7 @@
-package com.hackathon.triage.schedule.impl;
+package com.hackathon.triage.schedule.configs.impl;
 
-import com.hackathon.triage.schedule.api.IScheduleTask;
+import com.hackathon.triage.schedule.task.api.IScheduleTask;
+import com.hackathon.triage.schedule.task.impl.TaskSchedulerTaskImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -10,19 +11,23 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  * @author <a href="himanshu.goyal@navis.com">Himanshu Goyal</a>
  */
 @Configuration
-public class TestSchedulerConfig extends BaseScheduleTaskExecutor{
+public class TestSchedulerConfig extends AbstractBaseScheduleTaskExecutor {
 
-    @Autowired
-    @Qualifier("testScheduleApiCallerTaskImpl")
     private IScheduleTask _taskSchedulerTask;
+
+    /**
+     * NOP
+     *
+     * @param iScheduleTask TaskSchedulerTaskImpl
+     */
+    public TestSchedulerConfig(TaskSchedulerTaskImpl iScheduleTask) {
+        super(iScheduleTask);
+    }
+
 
     @Override
     public String getCronExpression() {
         return "0/10 0 0 ? * *";
     }
 
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-        this.configureTasks(taskRegistrar, _taskSchedulerTask, getCronExpression());
-    }
 }

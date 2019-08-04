@@ -46,7 +46,7 @@ public class DatabasePolpulator implements CommandLineRunner {
 
     /**
      * this method hits the required api and fills the database with all the intial values
-     * @param args
+     * @param args Arguments
      * @throws Exception upon error
      */
     @Override

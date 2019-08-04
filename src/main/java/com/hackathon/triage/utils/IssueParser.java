@@ -81,7 +81,6 @@ public class IssueParser {
                 componentObject.setId(null);
                 componentObject.setName(null);
             } else {
-
                 for (Map<String, Object> component : components) {
                     String id = (String) component.get("id");
                     String componentName = (String) component.get("name");

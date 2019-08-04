@@ -1,15 +1,16 @@
-package com.hackathon.triage.schedule.impl;
+package com.hackathon.triage.schedule.task.impl;
 
 import com.hackathon.triage.api.IssueRequestMaker;
 import com.hackathon.triage.issue.Issue;
 import com.hackathon.triage.issue.IssueRepository;
-import com.hackathon.triage.schedule.api.IScheduleTask;
+import com.hackathon.triage.schedule.task.api.IScheduleTask;
 import com.hackathon.triage.utils.IssueParser;
 import com.hackathon.triage.utils.PropertyReader;
 import com.hackathon.triage.utils.api.IPropertyFileUpdateConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import static com.hackathon.triage.config.ApiCallerConfig.API_FILE_NAME;
 /**
  * @author <a href="himanshu.goyal@navis.com">Himanshu Goyal</a>
  */
+@Service
 public class SprintApiCallerScheduleTaskImpl implements IScheduleTask {
 
     public static Logger LOGGER = LoggerFactory.getLogger(SprintApiCallerScheduleTaskImpl.class);

@@ -14,7 +14,7 @@ import static com.hackathon.triage.config.BootstrapConfig.ACCOUNT_PROPERTIES_FIL
  */
 public class JiraAccount {
 
-    private final Map<String, String> _jiraAccountDetials = new HashMap<>();
+    private final Map<String, String> _jiraAccountDetails = new HashMap<>();
 
     @Autowired
     private PropertyReader _propertyReader;
@@ -30,10 +30,10 @@ public class JiraAccount {
 
     @PostConstruct
     public void init() {
-        _jiraAccountDetials.putAll(_propertyReader.getPropertyFileContent(ACCOUNT_PROPERTIES_FILE));
+        _jiraAccountDetails.putAll(_propertyReader.getPropertyFileContent(ACCOUNT_PROPERTIES_FILE));
     }
 
     public String getValueForProperty(String inPropertyName) {
-        return _jiraAccountDetials.get(inPropertyName);
+        return _jiraAccountDetails.get(inPropertyName);
     }
 }
