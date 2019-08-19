@@ -18,7 +18,6 @@ public class SprintApiCallerTaskConfigAbstract extends AbstractBaseScheduleTaskE
 
     public SprintApiCallerTaskConfigAbstract(SprintApiCallerScheduleTaskImpl inScheduleTask) {
         super(inScheduleTask);
-        _sprintApiCallerScheduleTask = inScheduleTask;
     }
 
     /**
@@ -30,6 +29,4 @@ public class SprintApiCallerTaskConfigAbstract extends AbstractBaseScheduleTaskE
     public String getCronExpression() {
         return "0 0 0 ? * THU";
     }
-
-
 }

@@ -1,5 +1,23 @@
 POST http://localhost:8090/find/developer
 
-Initialize the YC Emulator Adapter code
+Add the TLS support for processing messages received on a cluster node from a JMS queue
+
+###
+POST http://localhost:8090/find/developer
+
+AGV deliver WA cannot be dispatched due to discarding(agv_status())
+
+###
+POST http://localhost:8090/find/developer
+
+Initialize the Emulator code - Part 1
+###
+POST http://localhost:8090/find/developer
+
+Refactor code that generates the TLS Requests and transmits them to the TOS.OUT JMS queue
+###
+POST http://localhost:8090/find/developer
+
+record and playback in Kafka event
 
 ###

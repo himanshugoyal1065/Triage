@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @author <a href="himanshu.goyal@navis.com">Himanshu Goyal</a>
  */
 @Component
-@Import(value = {IScheduleConfig.class})
+//@Import(value = {IScheduleConfig.class})
 public class ScheduleConfig {
 
     @Autowired
